@@ -87,7 +87,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-URL = "https://rllssxxqdgkdenilwoxr.supabase.co"
-KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsbHNzeHhxZGdrZGVuaWx3b3hyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgwODA3OTEsImV4cCI6MjA1MzY1Njc5MX0.wJXGN7iCVv00xxsTfYgdAMZe6jMkw_X785rJjPDR-n0"
+URL = "your-supabase-url"
+KEY = "your-supabase-key"
 
-SAFE_BROWSING_API_KEY = "AIzaSyC8zn31xo3zvOZL25R0oMmWQkUcS9bIHtE"
+SAFE_BROWSING_API_KEY = "your-api-key"
