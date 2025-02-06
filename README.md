@@ -38,3 +38,5 @@
 ### API Integration: Gmail API for email fetching
 ### Security: Rule-based phishing detection algorithms
 
+## 📸 Screenshot
+
