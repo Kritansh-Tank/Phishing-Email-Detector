@@ -1,6 +1,6 @@
 # Phishing-Email-Detector
 
-## 🚀 Hackathon: HACKQUINOX
+## 🚀 Hackathon: HACKQUINOX-2025
 
 ### 🛡 Domain: Cyber Security
 ### 🔍 Topic: Phishing Email Detector
