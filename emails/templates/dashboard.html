@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phishing Email Detector</title>
+    <link
+      rel="icon"
+      href="{% static 'images/icon.png' %}"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-image: url("{% static 'images/bg.png' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        text-align: center;
+        width: 100%;
+        background-color: whitesmoke;
+        padding: 100px;
+        border-radius: 5px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+        color: #333;
+        word-wrap: break-word;
+      }
+
+      th {
+        background-color: #f2f3f5;
+        color: #555;
+        font-weight: normal;
+        border-bottom: 1px solid #ddd;
+      }
+
+      td {
+        padding: 12px 15px;
+        text-align: left;
+        color: #333;
+      }
+
+      tr:not(:last-child) td {
+        border-bottom: 1px solid #ddd;
+      }
+
+      .sender {
+        font-weight: bold;
+        color: #202124;
+        width: 45%;
+      }
+
+      .subject {
+        color: #5f6368;
+        width: 39%;
+      }
+
+      .date {
+        color: #777;
+        width: 33%;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.40/moment-timezone.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Flagged Emails</h1>
+      <table>
+        <tr>
+          <th class="sender">Sender</th>
+          <th class="subject">Subject</th>
+          <th>Date</th>
+        </tr>
+        {% for email in emails %}
+        <tr>
+          <td class="sender">{{ email.sender_name }}</td>
+          <td class="subject">{{ email.subject }}</td>
+          <td class="date" data-time="{{ email.created_at }}"></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <script>
+      // Convert UTC time to IST and format it
+      document.querySelectorAll(".date").forEach((element) => {
+        let utcTime = element.getAttribute("data-time");
+        let istTime = moment
+          .utc(utcTime)
+          .tz("Asia/Kolkata")
+          .format("D MMM YYYY h:mm A");
+        element.textContent = istTime;
+      });
+
+      function checkPhishingAlerts() {
+        fetch("/check-new-alerts/")
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.new_phishing_count > 0) {
+              // Create alert box dynamically
+              const alertBox = document.createElement("div");
+              alertBox.innerHTML = `🚨 ${data.new_phishing_count} new phishing email(s) detected!`;
+              alertBox.style.background = "red";
+              alertBox.style.color = "white";
+              alertBox.style.padding = "10px";
+              alertBox.style.margin = "10px 0";
+              alertBox.style.borderRadius = "5px";
+              alertBox.style.textAlign = "center";
+              document.body.prepend(alertBox);
+
+              // Remove alert after 5 seconds
+              setTimeout(() => {
+                alertBox.remove();
+              }, 5000);
+            }
+          });
+      }
+
+      // Check for phishing alerts every 10 seconds
+      setInterval(checkPhishingAlerts, 10000);
+    </script>
+  </body>
+</html>
