@@ -1,14 +1,14 @@
 # Phishing-Email-Detector
 
-## 🚀 Hackathon: HACKQUINOX-2025
+## Hackathon: HACKQUINOX-2025
 
-### 🛡 Domain: Cyber Security
-### 🔍 Topic: Phishing Email Detector
+### Domain: Cyber Security
+### Topic: Phishing Email Detector
 
-## 📌 Problem Statement
+## Problem Statement
 ### Phishing attacks exploit user ignorance to steal sensitive information. This project aims to develop a tool that analyzes email metadata and content for phishing indicators, helping users detect and prevent such attacks.
 
-## ⚙️ System Features
+## System Features
 
 ### a. Email Parsing
 
@@ -31,13 +31,13 @@
 1. Notify users when a new phishing email is detected.
 2. Implement real-time or periodic alerts via JavaScript polling.
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ### Backend: Python, Django, Supabase
 ### Frontend: HTML, CSS, JavaScript
 ### API Integration: Gmail API for email fetching
 ### Security: Rule-based phishing detection algorithms
 
-## 📸 Screenshot
+## Screenshot
 
 ![Phishing Email Detector](https://drive.google.com/uc?id=1Nv9WjImM9d7Hu4ovWaCA0_2jzIVNSV4H)
