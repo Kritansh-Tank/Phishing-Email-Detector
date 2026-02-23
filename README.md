@@ -35,7 +35,7 @@
 
 ## User Interface
 
-![Phishing Email Detector](https://drive.google.com/uc?id=1Nv9WjImM9d7Hu4ovWaCA0_2jzIVNSV4H)
+![Phishing Email Detector](assets/Phishing_Email_Detector.png)
 
 ## License
 
